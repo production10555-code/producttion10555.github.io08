@@ -1,3 +1,8 @@
+document.getElementById("btn-submit").addEventListener("click", () => {
+    alert("กดปุ่มสำเร็จ!"); // ใส่บรรทัดนี้ลงไปเป็นบรรทัดแรก
+    const qr = document.getElementById("qr-input").value; 
+    // ... โค้ดที่เหลือ ...
+});
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyX_nW3EFK3lNcUKDOqOewRmTfVbgG2O4ftUNBC6QlCTw5zqCXFXNeKlkwbh4nQQiSzpA/exec";
 
 async function sendDataToSheets(qrData, operatorName, batchId) {
