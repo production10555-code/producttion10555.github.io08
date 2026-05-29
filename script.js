@@ -1,4 +1,4 @@
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyf0IAeJcQvTMv09ibXXo4JpWAViYJyNKncjtI-WtJBGwP1uZWK8QbrZTUMLmJWfblDwg/exec";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyX_nW3EFK3lNcUKDOqOewRmTfVbgG2O4ftUNBC6QlCTw5zqCXFXNeKlkwbh4nQQiSzpA/exec";
 
 async function sendDataToSheets(qrData, operatorName, batchId) {
   const payload = {
