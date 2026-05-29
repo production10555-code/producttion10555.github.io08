@@ -37,6 +37,21 @@ document.getElementById("btn-submit").addEventListener("click", () => {
     // ตรวจสอบเบื้องต้นว่ามีข้อมูลครบไหม
     if(!qr || !name || !batch) {
         alert("กรุณากรอกข้อมูลให้ครบทุกช่อง");
+      document.getElementById("btn-submit").addEventListener("click", () => {
+    const qr = document.getElementById("qr-input").value; 
+    const name = document.getElementById("name-input").value;
+    const batch = document.getElementById("batch-input").value;
+    
+    // ใส่ log ตรงนี้เพื่อดูว่าได้ค่าไหม
+    console.log("ค่าที่อ่านได้:", { qr, name, batch });
+    
+    if(!qr || !name || !batch) {
+        alert("ข้อมูลไม่ครบ: สแกน QR หรือยัง?");
+        return;
+    }
+    
+    sendDataToSheets(qr, name, batch);
+});
         return;
     }
     
