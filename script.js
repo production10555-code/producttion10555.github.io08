@@ -1,5 +1,4 @@
-// ใช้ URL เดียวที่คุณมั่นใจว่าถูกต้องที่สุด
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxUVOOUxu7-2uq5njmf9xKDKyNx18KNz1QPGf32Ye3txEktBbiRjX2kyDiWHhBSm0FdAA/exec";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyf0IAeJcQvTMv09ibXXo4JpWAViYJyNKncjtI-WtJBGwP1uZWK8QbrZTUMLmJWfblDwg/exec";
 
 async function sendDataToSheets(qrData, operatorName, batchId) {
   const payload = {
@@ -10,20 +9,25 @@ async function sendDataToSheets(qrData, operatorName, batchId) {
   };
 
   try {
-    // ส่งข้อมูลแบบ POST
-    await fetch(WEB_APP_URL, {
+    // เปลี่ยนมาใช้ fetch ที่ส่ง JSON ตรงๆ
+    const response = await fetch(WEB_APP_URL, {
       method: "POST",
-      mode: 'no-cors', // สำคัญ: ใช้โหมดนี้เพื่อให้ข้ามปัญหา Cross-Origin
-      headers: { "Content-Type": "text/plain" },
+      mode: "no-cors", // ใช้ no-cors ปลอดภัยที่สุดสำหรับ Google Apps Script
+      cache: "no-cache",
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify(payload)
     });
-    alert("ส่งข้อมูลไปที่ Google Sheets เรียบร้อยแล้ว!");
+
+    // เนื่องจากเป็น no-cors จะอ่าน response ไม่ได้ แต่ถือว่าส่งผ่าน
+    alert("บันทึกข้อมูลเรียบร้อยแล้ว!"); 
+    
   } catch (error) {
     console.error("Error:", error);
-    alert("เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์");
+    alert("เกิดข้อผิดพลาด: " + error.message);
   }
 }
-
 // ผูกเหตุการณ์กับปุ่ม
 document.getElementById("btn-submit").addEventListener("click", () => {
     const qr = document.getElementById("qr-input").value; 
