@@ -22,7 +22,7 @@ async function sendDataToSheets(qrData, operatorName, batchId) {
     };
 
     try {
-        const response = await fetch("YOUR_WEB_APP_URL", {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbz9iwkEiTlnfZlvUfm0bEasLnOXEDvdAOVlQBuZAtoUlIb360pLt8ArMSkuKVE-vAmKdw/exec", {
             method: "POST",
             mode: "no-cors", // หากต้องการทดสอบ ให้ลองเปลี่ยนเป็น "cors" ถ้าฝั่ง Google Script ตั้งค่าอนุญาตไว้
             headers: { "Content-Type": "application/json" },
@@ -34,7 +34,7 @@ async function sendDataToSheets(qrData, operatorName, batchId) {
         alert("เกิดข้อผิดพลาด: " + error.message);
     }
 }
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyX_nW3EFK3lNcUKDOqOewRmTfVbgG2O4ftUNBC6QlCTw5zqCXFXNeKlkwbh4nQQiSzpA/exec";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz9iwkEiTlnfZlvUfm0bEasLnOXEDvdAOVlQBuZAtoUlIb360pLt8ArMSkuKVE-vAmKdw/exec";
 
 async function sendDataToSheets(qrData, operatorName, batchId) {
   const payload = {
@@ -46,7 +46,7 @@ async function sendDataToSheets(qrData, operatorName, batchId) {
 
   try {
     // เปลี่ยนมาใช้ fetch ที่ส่ง JSON ตรงๆ
-const response = await fetch("https://script.google.com/macros/s/AKfycbyX_nW3EFK3lNcUKDOqOewRmTfVbgG2O4ftUNBC6QlCTw5zqCXFXNeKlkwbh4nQQiSzpA/exec", {
+const response = await fetch("https://script.google.com/macros/s/AKfycbz9iwkEiTlnfZlvUfm0bEasLnOXEDvdAOVlQBuZAtoUlIb360pLt8ArMSkuKVE-vAmKdw/exec", {
       method: "POST",
       mode: "no-cors", // ใช้ no-cors ปลอดภัยที่สุดสำหรับ Google Apps Script
       cache: "no-cache",
