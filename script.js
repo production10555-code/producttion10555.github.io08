@@ -1,8 +1,39 @@
 document.getElementById("btn-submit").addEventListener("click", () => {
-    alert("กดปุ่มสำเร็จ!"); // ใส่บรรทัดนี้ลงไปเป็นบรรทัดแรก
-    const qr = document.getElementById("qr-input").value; 
-    // ... โค้ดที่เหลือ ...
+    const qr = document.getElementById("qr-input").value;
+    const name = document.getElementById("name-input").value;
+    const batch = document.getElementById("batch-input").value;
+
+    // ตรวจสอบข้อมูลก่อนส่ง
+    if (!qr || !name || !batch) {
+        alert("กรุณากรอกข้อมูลให้ครบทุกช่อง");
+        return; // จบการทำงาน ไม่ต้องทำอะไรต่อ
+    }
+
+    // เรียกฟังก์ชันส่งข้อมูล
+    sendDataToSheets(qr, name, batch);
 });
+
+async function sendDataToSheets(qrData, operatorName, batchId) {
+    const payload = {
+        action: "scan",
+        qrData: qrData,
+        operatorName: operatorName,
+        batchId: batchId
+    };
+
+    try {
+        const response = await fetch("YOUR_WEB_APP_URL", {
+            method: "POST",
+            mode: "no-cors", // หากต้องการทดสอบ ให้ลองเปลี่ยนเป็น "cors" ถ้าฝั่ง Google Script ตั้งค่าอนุญาตไว้
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+        alert("ส่งข้อมูลเรียบร้อยแล้ว");
+    } catch (error) {
+        console.error("Error:", error);
+        alert("เกิดข้อผิดพลาด: " + error.message);
+    }
+}
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyX_nW3EFK3lNcUKDOqOewRmTfVbgG2O4ftUNBC6QlCTw5zqCXFXNeKlkwbh4nQQiSzpA/exec";
 
 async function sendDataToSheets(qrData, operatorName, batchId) {
